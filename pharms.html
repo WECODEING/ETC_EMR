@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Webtest</title>
+
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/web3/1.7.0/web3.min.js"></script>
+    <script src="./callEMR.js"></script>
+
+    <script type="text/javascript">
+//页面1
+function app1() {
+	document.getElementById("app2").style.display="none";
+    document.getElementById("app3").style.display="none";
+	document.getElementById("app1").style.display="inline";
+}
+//页面2
+function app2() {
+	document.getElementById("app1").style.display="none";
+    document.getElementById("app3").style.display="none";
+	document.getElementById("app2").style.display="inline";
+}
+//页面3
+function app3() {
+	document.getElementById("app1").style.display="none";
+    document.getElementById("app2").style.display="none";
+	document.getElementById("app3").style.display="inline";
+}
+
+    </script>
+    <link rel="stylesheet" type="text/css" href="./base.css">
+</head>
+<body>
+
+    <div class="nav-side-menu">
+        <div>
+            <button onclick="getAccount()">登录</button>
+            <p id="loginaddress"></p>
+        </div>
+        <div class="brand">常用功能</div>
+        <div>
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                    <button class="button" onclick="app1()">查验处方拿药</button>
+                </li>
+                <li>
+                    <button class="button" onclick="app2()">查询药品信息</button>
+                </li> 
+                <li>
+                    <button class="button" onclick="app3()">管理药品信息</button>
+                </li> 
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="main-context">
+        <div style="display:inline" id="app1">
+            &nbsp;&nbsp;请输入处方编号：<input type="text" placeholder="2001" class="input" id="EMRID"><br>
+            &nbsp;&nbsp;请输入授权码：<input type="text" placeholder="123456" class="input" id="AUTHORcode"><br>
+            <button onclick="checkMR()" class="check">查询</button><br><br>
+            <table border="0px" style="border:2px solid black;padding: 20px 80px 80px 80px;">
+                <tr><td colspan="4"><img width="100%" src="处方笺.png"></td></tr>
+                <tr>
+                    <td class="thhead">医院名称：</td><td class="thbody" id="hostname"></td>
+                    <td class="thhead">患者姓名：</td><td class="thbody" id="patientname"></td>
+                </tr>
+                <tr>
+                    <td class="thhead">门诊病历号：</td><td class="thbody" id="caseid"></td>
+                    <td class="thhead">科别：</td><td class="thbody" id="speciality"></td>
+                </tr>
+                <tr>
+                    <td class="thhead">临床诊断：</td><td class="thbody" id="diagnosis"></td>
+                    <td class="thhead">日期：</td><td class="thbody" id="date"></td>
+                </tr>
+                <tr><td colspan="4"><img width="100%" src="分割线.png"></td></tr>
+                <tr>
+                    <td ></td><td id="medname1"></td>
+                    <td id="mednums1"></td><td id="meduse1"></td>
+                </tr><tr>
+                    <td ></td><td id="medname2"></td>
+                    <td id="mednums2"></td><td id="meduse2"></td>
+                </tr><tr>
+                    <td ></td><td id="medname3"></td>
+                    <td id="mednums3"></td><td id="meduse3"></td>
+                </tr><tr>
+                    <td ></td><td id="medname4"></td>
+                    <td id="mednums4"></td><td id="meduse4"></td>
+                </tr><tr>
+                    <td ></td><td id="medname5"></td>
+                    <td id="mednums5"></td><td id="meduse5"></td>
+                </tr>
+                <tr><td colspan="4"><img width="100%" src="分割线.png"></td></tr>
+                <tr>
+                    <td class="thhead">医师：</td><td class="thbody" id="docSign"></td>
+                    <td class="thhead">发药：</td><td class="thbody" id="pharmSign"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="display:none" id="app2">
+            <input type="text" placeholder="&nbsp;&nbsp;请输入药品编号：" class="input" id="medid">
+            <button onclick="checkmed()" class="check">查询</button><br><br>
+
+            <table class="table" border="1px" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th>ID</th>
+                    <th>name</th>
+                    <th>type</th>
+                    <th>dw</th>
+                </tr>
+    
+                <tr>
+                    <td id="mid"></td>
+                    <td id="mname"></td>
+                    <td id="mtype"></td>
+                    <td id="mdw"></td>
+                </tr>
+            </table>
+
+        </div>
+        
+        <div style="display:none" id="app3">
+            <table class="table" border="1px" cellspacing="1" cellpadding="0">
+                <tr>
+                    <td width="10%" class="btbg font-center titfont">药品ID</td>
+                    <td width="10%" class="btbg font-center titfont">药品名称</td>
+                    <td width="10%" class="btbg font-center titfont">药品类型</td>
+                    <td width="10%" class="btbg font-center titfont">计量单位</td>
+                </tr>
+                <tr>
+                    <td width="8%" class="btbg font-center"><input type="text" id="ipmid"></td>
+                    <td width="8%" class="btbg font-center"><input type="text" id="ipmname"></td>
+                    <td width="8%" class="btbg font-center"><input type="text" id="ipmtype"></td>
+                    <td width="8%" class="btbg font-center"><input type="text" id="ipmdw"></td>
+                </tr>
+                </table>
+                <button onclick="addmed()" class="check">添加</button>
+        </div>
+        <div>
+            <p id="log"></p>
+        </div>
+
+    </div>
+</body>
+</html>

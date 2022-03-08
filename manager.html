@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Webtest</title>
+
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/web3/1.7.0/web3.min.js"></script>
+    <script src="./callEMR.js"></script>
+
+    <script type="text/javascript">
+//页面1
+function app1() {
+	document.getElementById("app2").style.display="none";
+    document.getElementById("app3").style.display="none";
+	document.getElementById("app1").style.display="inline";
+}
+//页面2
+function app2() {
+	document.getElementById("app1").style.display="none";
+    document.getElementById("app3").style.display="none";
+	document.getElementById("app2").style.display="inline";
+}
+//页面3
+function app3() {
+	document.getElementById("app1").style.display="none";
+    document.getElementById("app2").style.display="none";
+	document.getElementById("app3").style.display="inline";
+}
+
+    </script>
+    <link rel="stylesheet" type="text/css" href="./base.css">
+</head>
+<body>
+
+    <div class="nav-side-menu">
+        <div>
+            <button onclick="getAccount()">登录</button>
+            <p id="loginaddress"></p>
+        </div>
+        <div class="brand">常用功能</div>
+        <div>
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                    <button class="button" onclick="app1()">管理员信息</button>
+                </li>
+                <li>
+                    <button class="button" onclick="app2()">医师账号管理</button>
+                </li> 
+                <li>
+                    <button class="button" onclick="app3()">药师账号管理</button>
+                </li> 
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="main-context">
+        <div style="display:inline" id="app1">
+            管理员信息
+        </div>
+
+        <div style="display:none" id="app2">
+            医师账号管理<br>
+            <input type="text" id="indocaddress"><br>
+            <button onclick="addDoctor()">添加医师</button>
+            <button onclick="checkDoctor()">查询医师</button>
+            <p id="log">日志</p>
+        </div>
+        
+        <div style="display:none" id="app3">
+            药师账号管理<br>
+            <input type="text" id="indocaddress"><br>
+            <button onclick="addPharm()">添加药师</button>
+            <button onclick="checkPharm()">查询药师</button>
+        <div>
+            
+        </div>
+
+    </div>
+</body>
+</html>

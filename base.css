@@ -1,0 +1,105 @@
+
+
+.nav-side-menu {
+    overflow: auto;
+    font-family: verdana;
+    font-size: 12px;
+    font-weight: 200;
+    background-color: #2e353d;
+    position: fixed;
+    top: 0px;
+    width: 250px;
+    height: 100%;
+    color: #e1ffff;
+}
+
+.nav-side-menu .brand {
+    background-color: #23282e;
+    padding-top:80px ;
+    padding-bottom:20px ;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+}
+
+.nav-side-menu .toggle-btn {
+    display: none;
+}
+
+.nav-side-menu ul,
+.nav-side-menu li {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.nav-side-menu li {
+    padding-left: 10px;
+    border-left: 3px solid #2e353d;
+    border-bottom: 1px solid #23282e;
+}
+
+.nav-side-menu .button {
+    padding-left: 20px;
+    height: 50px;
+    width: 250px;
+    font-size: 16px;
+    font-family: "微软雅黑";
+    text-align: left;
+    color: #e1ffff;
+    border: none;
+    background-color: #2e353d;
+}
+
+.nav-side-menu button:hover {
+    border-left: 3px solid #d19b3d;
+    background-color: #4f5b69;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.main-context {
+    padding: 20px;
+    margin-left: 300px;
+    margin-top: 50px;
+}
+
+.main-context .input{
+    width: 280px;
+    height: 30px;
+    font-family: "微软雅黑";
+}
+
+.main-context .check{
+    width: 100px;
+    height: 35px;
+    background: cornflowerblue;
+    border: 1px solid cornflowerblue;
+    font-size: 16px;
+    color: white;
+    font-family: "微软雅黑";
+    cursor: pointer;
+}
+
+.main-context th,td,input {
+    width: 100px;
+    height: 50px;
+}
+
+.main-context .thhead {
+    width: 120px;
+    height: 50px;
+    text-align: right;
+}
+.main-context .thbody {
+    width: 250px;
+    height: 50px;
+    border-bottom:1px;
+    border-bottom: black;
+    text-align: left;
+}
